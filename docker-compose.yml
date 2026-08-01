@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: go_backend
+    ports:
+      - "8080:8080"
+    environment:
+      - BACKEND_PORT=${BACKEND_PORT}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - DOMAIN=${DOMAIN}
+    # restart: unless-stopped
+  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: nuxt_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NUXT_PUBLIC_API_BASE=${NUXT_PUBLIC_API_BASE}
+    depends_on:
+      - backend
+    # restart: unless-stopped
