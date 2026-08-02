@@ -34,6 +34,7 @@ go.work.sum
 # Project build
 main
 *templ.go
+/tmp
 
 # OS X generated file
 .DS_Store
